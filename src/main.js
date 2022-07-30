@@ -1,4 +1,12 @@
+require('./bootstrap/index')
 import { createApp } from 'vue'
-import App from './App.vue'
+import BaseTemplate from './layout/BaseTemplate'
+import router from './routes/index'
+import store from './store'
 
-createApp(App).mount('#app')
+
+/**
+ * 
+ */
+
+createApp(BaseTemplate).use(store).use(router).mount('#app')

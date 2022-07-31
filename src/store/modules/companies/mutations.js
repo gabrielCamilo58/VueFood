@@ -7,5 +7,8 @@ export default {
     },
     SET_CATEGORIES_COMPANY_SELECTED(state, categories){
         state.categoriesCompanySelected = categories;
+    },
+    SET_PRODUCTS_COMPANY(state, products){
+        state.productCompany = products
     }
 }

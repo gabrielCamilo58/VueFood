@@ -3,5 +3,8 @@ export default {
         data: []
     },
     companySelect: null,
-    categoriesCompanySelected: null
+    productCompany: null,
+    categoriesCompanySelected: {
+        data: []
+    }
 }

@@ -3,10 +3,10 @@ import { createApp } from 'vue'
 import BaseTemplate from './layout/BaseTemplate'
 import router from './routes/index'
 import store from './store'
-
+import PreLoaderComponent from '@/components/preLoader.vue'
 
 /**
  * 
  */
 
-createApp(BaseTemplate).use(store).use(router).mount('#app')
+createApp(BaseTemplate).component('PreLoaderComponent', PreLoaderComponent).use(store).use(router).mount('#app')

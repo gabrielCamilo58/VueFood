@@ -16,12 +16,10 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import HeaderComponent from './_partials/headerView.vue'
 import FooterComponent from './_partials/footerView.vue'
-import PreLoaderComponent from '@/components/preLoader.vue'
 export default {
     components:{
-        HeaderComponent, FooterComponent, PreLoaderComponent
+        HeaderComponent, FooterComponent
     }
-
 }
 </script>
 

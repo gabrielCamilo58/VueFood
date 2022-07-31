@@ -6,7 +6,8 @@
       <div class="row my-4" v-for="(company, index) in companies.data" :key="index">
         <div class="col-lg-4 col-md-4 col-6 mb-4">
           <div class="restaurant-card">
-            <a class="logo" href="vitrine-tenant.html"
+            <a class="logo" href="#"
+            @click.prevent="goStoreCompany(company)"
               ><img
                 class="card-img-top"
                 :src="[company.image != '' ? company.image : require('@/assets/imgs/vue-food.png')]"
@@ -14,7 +15,7 @@
             /></a>
             <div class="restaurant-card-body">
               <h3>
-                <router-link :to="{ name: 'products' }">{{company.Nome}}</router-link>
+                <a href="#" @click.prevent="goStoreCompany(company)">{{company.Nome}}</a>
               </h3>
             </div>
           </div>
@@ -44,7 +45,11 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getCompanies"]),
+    ...mapActions(["getCompanies", 'setCompany']),
+    goStoreCompany (company) {
+        this.setCompany(company)
+        this.$router.push({name: 'products', params: {companyFlag: company.URL}})
+    }
   },
 };
 </script>

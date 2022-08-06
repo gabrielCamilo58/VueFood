@@ -9,7 +9,7 @@
         <div>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item nav-cart active">
-              <router-link class="nav-link" :to="{name: 'cart'}"><i class="fas fa-shopping-cart"></i> (2)</router-link>
+              <router-link class="nav-link" :to="{name: 'cart'}"><i class="fas fa-shopping-cart">({{productCart.length}})</i></router-link>
             </li>
             <li class="nav-item nav-cart active">
               <router-link :to="{name: 'login'}">Entrar</router-link>
@@ -20,3 +20,13 @@
     </nav>
   </header>
 </template>
+<script>
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState({
+      productCart: state => state.cart.products,
+    })
+  }
+}
+</script>

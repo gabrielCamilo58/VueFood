@@ -3,10 +3,18 @@
     <div class="list-categories">
       <a
         href="#"
-        class="list-categories__item active"
+        v-if="this.filters.category !== null"
+        class="list-categories__item"
+        @click.prevent="filterByCategory(null)"
+        ><div class="icon"><i class="fas fa-pizza-slice"></i></div>
+        <span>Todos</span>
+      </a>
+      <a
+        href="#"
         v-for="(category, index) in categories.data"
         :key="index"
-        @click.prevent="filterByCategory(category)"
+        :class="['list-categories__item', checkCategory(category.Identificador)]"
+        @click.prevent="filterByCategory(category.Identificador)"
         ><div class="icon"><i class="fas fa-pizza-slice"></i></div>
         <span>{{category.Nome}}</span>
       </a>
@@ -15,7 +23,7 @@
   <!-- Cards Produtos -->
   <div class="row my-4">
     <div class="col-lg-4 col-md-6 mb-4" v-for="(product, index) in products" :key="index">
-      <div class="card--flat h-100">
+      <div :class="['card--flat', 'h-100', {'disabled': productInCart(product)}]">
         <a href="#">
           <div class="card-image">
             <img class="card-img-top" src="@/assets/imgs/pizza.png" alt="" />
@@ -31,9 +39,8 @@
           </p>
         </div>
         <div class="card-footer card-footer-custom">
-          <router-link :to="{ name: 'cart' }"
-            >Adicionar no Carrinho <i class="fas fa-cart-plus"></i
-          ></router-link>
+          <a href="#" @click.prevent="addProductCart(product)">Adicionar no Carrinho <i class="fas fa-cart-plus"></i
+          ></a>
         </div>
       </div>
     </div>
@@ -42,7 +49,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 export default {
   props: ["companyFlag"],
   data() {
@@ -64,14 +71,18 @@ export default {
       company: (state) => state.companies.companySelect,
       categories: (state) => state.companies.categoriesCompanySelected,
       products: (state) => state.companies.productCompany,
+      productsCart: (state) => state.cart.products,
     }),
   },
   methods: {
     ...mapActions(["setCategoriesByCompany", "setProductsCompany"]),
-    filterByCategory(category){
-      this.filters.category = category.Identificador;
+    filterByCategory(identify){
+      this.filters.category = identify;
       this.loadProducts();
     },
+        ...mapMutations({
+      addProductCart: 'ADD_PRODUCT_TO_CART',
+    }),
     loadProducts(){
 
       const params = {
@@ -82,6 +93,20 @@ export default {
         params.categories = [ this.filters.category]
       }
         this.setProductsCompany(params);
+    },
+    checkCategory(identify){
+      console.log(identify)
+      return identify == this.filters.category ? 'active' : '';
+    },
+    productInCart(product){
+      let incart = false;
+      this.productsCart.map((productCart) => {
+        if(productCart.uuid === product.uuid){
+          incart = true;
+        }
+      });
+
+      return incart;
     }
   },
 };

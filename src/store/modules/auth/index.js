@@ -1,4 +1,5 @@
 import axios from "axios";
+import {TOKEN_NAME} from "../../../../configs/api";
 
 export default {
     state : {
@@ -28,6 +29,13 @@ export default {
         register({commit}, params){
             console.log(commit)
             return axios.post('v1/client', params);
+        },
+        login({commit}, params){
+            console.log(commit)
+            return axios.post('/sanctum/token',params).then((response) => {
+                const token = response.data.token
+                localStorage.setItem(TOKEN_NAME, token)
+            });
         }
     }
 }

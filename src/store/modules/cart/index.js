@@ -3,7 +3,6 @@ export default {
         products: [],
     },
     mutations: {
-
         ADD_PRODUCT_TO_CART(state, product){
             state.products.push({
                 qtd: 1,
@@ -29,7 +28,7 @@ export default {
                 if(productCart.uuid == product.uuid){
                     state.products[index].qtd--
                 }
-                if(state.products[index] > 0){
+                if(state.products[index].qtd > 0){
                     return state.products[index];
                 }
             })

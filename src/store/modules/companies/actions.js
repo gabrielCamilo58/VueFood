@@ -18,7 +18,6 @@ export default {
         commit('SET_TEXTPRELOADER', 'carregando categorias')
 
         axios.get(`${URI_BASE_API}v1/categories`, {params : {token_company}}).then((response) => {
-            console.log(response.data)
             commit('SET_CATEGORIES_COMPANY_SELECTED', response.data)
         }).finally(() => {commit('SET_PRELOADER', false)})
     },

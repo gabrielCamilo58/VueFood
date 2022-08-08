@@ -9,4 +9,6 @@ import PreLoaderComponent from '@/components/preLoader.vue'
  * 
  */
 
-createApp(BaseTemplate).component('PreLoaderComponent', PreLoaderComponent).use(store).use(router).mount('#app')
+createApp(BaseTemplate).component('PreLoaderComponent', PreLoaderComponent).use(store).use(router).mount('#app');
+
+store.dispatch('getMe')

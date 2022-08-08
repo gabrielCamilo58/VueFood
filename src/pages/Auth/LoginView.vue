@@ -90,7 +90,7 @@ export default {
         device_name: this.deviceName,
         ...this.formData,
       }
-      this.login(params).catch((error) => {
+      this.login(params).then(() => this.$router.push({name: 'home'})).catch((error) => {
         const errorResponse = error.response;
       if (errorResponse.status === 422){
         this.error = Object.assign(errorResponse.data.errors); 

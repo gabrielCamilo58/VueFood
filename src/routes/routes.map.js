@@ -3,6 +3,7 @@ import ProductsComponent from '../pages/ProductsView.vue';
 import CartComponent from '../pages/CartView.vue';
 import LoginView from '../pages/Auth/LoginView.vue';
 import RegisterView from '../pages/Auth/RegisterView.vue'
+import MyOrders from '../pages/Auth/MyOrders.vue'
 
 const routes = [
     {
@@ -18,6 +19,11 @@ const routes = [
         path: '/',
         component: () => import('../layout/AuthTemplate'),
         children: [
+            {
+                path: '/meus-pedidos',
+                component: MyOrders,
+                name: 'my.orders'
+            },
             {
                 path: '/login',
                 component: LoginView,

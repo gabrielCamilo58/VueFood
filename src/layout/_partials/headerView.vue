@@ -12,7 +12,7 @@
               <router-link class="nav-link" :to="{name: 'cart'}"><i class="fas fa-shopping-cart">({{productCart.length}})</i></router-link>
             </li>
             <li class="nav-item nav-cart active">
-              <a href="#" v-if="me.name != '' ">Ola {{me.Nome}}! (<span @click.prevent="logout">sair</span>)</a>
+              <router-link  v-if="me.name != '' " :to="{name: 'my.orders'}"> Ola {{me.Nome}}! (<span @click.prevent="logout">sair</span>)</router-link>
               <router-link v-else :to="{name: 'login'}">Entrar</router-link>
             </li>
           </ul>

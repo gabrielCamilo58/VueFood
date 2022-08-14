@@ -7,10 +7,10 @@
       </div>
       <div class="col-sm-6">
         <ul class="p-0">
-          <li><b>Número:</b> dfdsafsa</li>
+          <li><b>Número:</b> {{identify}}</li>
           <li><b>Total:</b> R$ {{order.Total}}</li>
           <li><b>Data:</b> {{order.Date}}</li>
-          <li><b>Status:</b> <span class="badge bg-success text-light p-2">Em Aberto</span></li>
+          <li><b>Status:</b> <span class="badge bg-success text-light p-2">{{order.Status_label}}</span></li>
         </ul>
       </div>
       <div class="col-sm-6">
@@ -25,8 +25,8 @@
           <li>
             <span>Cliente</span>
             <ul class="p-0">
-              <li><b>Nome:</b> Carlos</li>
-              <li><b>E-mail:</b> carlos@especializati.com.br</li>
+              <li><b>Nome:</b> {{order.Client.Nome}}</li>
+              <li><b>E-mail:</b> {{order.Client.Email}}</li>
             </ul>
           </li>
         </ul>
@@ -57,7 +57,7 @@
 import { mapActions } from 'vuex'
 export default {
     props: ['identify'],
-    created (){
+    mounted (){
         this.getOrderByIdentify(this.identify)
             .then((response) => this.order = Object.assign(this.order, response.data.data))
             //.catch(this.$router.push({name: 'home'}));

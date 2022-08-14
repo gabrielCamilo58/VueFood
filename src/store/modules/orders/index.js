@@ -28,9 +28,10 @@ export default {
             }).then((response) => commit('SET_ORDERS', response.data)).finally(() =>  commit('SET_PRELOADER', false))
         },
         getOrderByIdentify({commit}, identify){
+            
             commit('SET_PRELOADER', true)
-            commit('SET_TEXTPRELOADER', 'carregando pedido')
-            return axios.get(`v1/order/${identify}`).finally(commit('SET_PRELOADER', false))
+            commit('SET_TEXTPRELOADER', 'carregando os pedidos')
+            return axios.get(`v1/order/${identify}`).finally(() => commit('SET_PRELOADER', false))
         }
 
     }

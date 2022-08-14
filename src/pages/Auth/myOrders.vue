@@ -9,9 +9,9 @@
       <div class="col-sm-6 my-4" v-for="(order, index) in myOrders.data" :key="index">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Pedido: <strong>{{order.indentify}}</strong></h5>
-            <p class="card-text">Data: {{order.data}}</p>
-            <a href="detalhes-pedido.html" class="btn btn-danger">Detalhes</a>
+            <h5 class="card-title">Pedido: <strong>{{order.Identify}}</strong></h5>
+            <p class="card-text">Data: {{order.Date}}</p>
+            <router-link :to="{name: 'details.order', params:{identify: order.Identify}}" class="btn btn-danger">Detalhes</router-link>
           </div>
         </div>
       </div>
@@ -25,12 +25,16 @@
 import { mapActions, mapState } from 'vuex'
 export default {
     created(){
+      if(this.me.Nome == ''){
+        return this.$router.push({name: 'home'})
+      }
         this.getMyOrders();
     },
 
     computed:{
         ...mapState({
-            myOrders: state => state.orders.MyOrders
+            myOrders: state => state.orders.MyOrders,
+            me: state => state.auth.me
         })
     },
     methods: {

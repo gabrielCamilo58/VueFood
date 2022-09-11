@@ -44,25 +44,22 @@
           </div>
         </div>
         <!-- end card body -->
-        <a href="" class="cart-finalizar">Finalizar</a>
+        <CheckoutVue/>
     </div>
     <!-- cart-->
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapState } from 'vuex'
+import CheckoutVue from './_partials/CheckoutComponent.vue'
 export default {
   computed: {
     ...mapState({
-      products: state => state.cart.products
+      products: state => state.cart.products,
+      me: state => state.me
     }),
   },
     methods: {
-      ...mapMutations({
-          removeProduct: 'REMOVE_PRODUCT_TO_CART',
-        incrementingQtd: 'INCREMENTING_QTD_PRODUCT',
-        decrementingQtd: 'DECREMENTIG_QTD_PRODUCT'
-    }),
     totalProduct(){
       let total = 0
        this.products.map((prod) => {
@@ -70,8 +67,8 @@ export default {
       })
 
       return total
-    },
+    },},
 
-    },
+    components: {CheckoutVue}
 }
 </script>

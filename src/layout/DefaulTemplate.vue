@@ -2,6 +2,7 @@
     <div>
         <PreLoaderComponent/>
         <header-component/>
+         <widget-container-modal />
         <!-- Page Content -->
         <div class="container container-body">
             <router-view></router-view>
@@ -14,11 +15,14 @@
 <script>
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+
 import HeaderComponent from './_partials/headerView.vue'
 import FooterComponent from './_partials/footerView.vue'
+import {container} from "jenesius-vue-modal";
 export default {
     components:{
-        HeaderComponent, FooterComponent
+        HeaderComponent, FooterComponent, WidgetContainerModal: container,
     }
 }
 </script>

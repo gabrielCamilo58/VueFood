@@ -50,17 +50,36 @@
           </div>
         </div>
 
-    </div>    
+    </div>  
+  
+    <hr>
+
+<div>
+  <b-button v-b-modal.evaluationModal  class="btn btn-success"
+    @v-if="me.Email =! '' && me.Email === order.Client.Email">Avaliar produto</b-button>
+
+  <b-modal id="evaluationModal" href="google.com">
+   <input type="taxarea">
+  </b-modal>
+</div>
+
 </div>  
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
+
+
 export default {
     props: ['identify'],
     mounted (){
         this.getOrderByIdentify(this.identify)
             .then((response) => this.order = Object.assign(this.order, response.data.data))
             //.catch(this.$router.push({name: 'home'}));
+    },
+    computed:{
+      ...mapState({
+        me: state => state.auth.me,
+      })
     },
     data (){
         return{
@@ -87,7 +106,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions (['getOrderByIdentify'])
-    }
+        ...mapActions (['getOrderByIdentify']),
+    },
 }
 </script>
